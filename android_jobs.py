@@ -43,37 +43,49 @@ job_titles = list(job_counts_short.keys())
 job_values = list(job_counts_short.values())
 
 
-plt.figure(figsize=(15, 10), facecolor='black')
+pie_colors = ['#004D40', '#B2DFDB', '#4DB6AC', '#00796B', '#00BFA5', '#00BFA5']
+bar_colors = ['#004D40', '#B2DFDB', '#4DB6AC', '#00796B', '#00BFA5', '#00BFA5']
+line_color = '#FF5733'
+marker_color = '#33FFBD'
+
+
+plt.figure(figsize=(8, 8), facecolor='black')
 plt.style.use('dark_background')
 
-# Pie Chart
-plt.subplot(3, 1, 1)  # 3 rows, 1 column, 1st subplot
 wedges, texts, autotexts = plt.pie(
     job_values, 
     autopct='%1.1f%%', 
     startangle=140, 
-    colors=plt.cm.tab10.colors,
+    colors=pie_colors,
     wedgeprops=dict(linewidth=2, edgecolor='black')
 )
-plt.title('Job Title Distribution for Android Developer Positions', fontsize=16)
-plt.axis('equal') 
 
-# Bar Graph
-plt.subplot(3, 1, 2) 
-plt.barh(job_titles, job_values, color=plt.cm.tab10.colors)
-plt.title('Job Count for Android Developer Positions', fontsize=16)
-plt.xlabel('Count', fontsize=14)
+plt.legend(wedges, job_titles, title="Job Titles", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1), fontsize=12, title_fontsize=14)
+
+plt.title('Job Title Distribution for Android Developer Positions', fontsize=16, color='white')
+plt.axis('equal')  
+plt.show()
+
+
+
+plt.figure(figsize=(10, 7), facecolor='black')
+plt.barh(job_titles, job_values, color=bar_colors)
+plt.title('Job Count for Android Developer Positions', fontsize=16, color='white')
+plt.xlabel('Count', fontsize=14, color='white')
 plt.grid(axis='x', color='gray', linestyle='--', linewidth=0.5)
+plt.xticks(color='white')
+plt.yticks(color='white')
+plt.show()
 
-# Line Graph 
+
 years = ['2020', '2021', '2022', '2023', '2024']
 dummy_data = [10, 20, 30, 25, 40] 
-plt.subplot(3, 1, 3) 
-plt.plot(years, dummy_data, marker='o', color='cyan')
-plt.title('Trend of Android Developer Jobs Over Years', fontsize=16)
-plt.ylabel('Job Count', fontsize=14)
-plt.grid(True)
 
-
-plt.tight_layout()
+plt.figure(figsize=(10, 7), facecolor='black')
+plt.plot(years, dummy_data, marker='o', color=line_color, markerfacecolor=marker_color, markersize=10)
+plt.title('Trend of Android Developer Jobs Over Years', fontsize=16, color='white')
+plt.ylabel('Job Count', fontsize=14, color='white')
+plt.grid(True, color='gray', linestyle='--', linewidth=0.5)
+plt.xticks(color='white')
+plt.yticks(color='white')
 plt.show()
